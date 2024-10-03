@@ -9,24 +9,28 @@ class Knight(Thread):
         self.power = power
 
     def run(self):
+        """Сражение рыцаря"""
         print(f"{self.name}, на нас напали!")
+        """Число враго num_enemy"""
         num_enemy = 100
         num_days = 0
-        while( num_enemy != 0):
+        """Пока все враги не сдохнут"""
+        while(num_enemy != 0):
             sleep(1)
             num_days += 1
             num_enemy = num_enemy-self.power
-            print(f"{self.name} сражается {num_days} дней, осталось {num_enemy} воинов.")
-        print(f"{self.name} одержал победу спустя {num_days} дней(дня)!")
+            print(f"{self.name} сражается {num_days} дней, осталось {num_enemy} воинов.\n")
+        print(f"\n{self.name} одержал победу спустя {num_days} дней(дня)!\n")
 
 
 first_knight = Knight('Sir Lancelot', 10)
 second_knight = Knight("Sir Galahad", 20)
 
-#threads = []
-thread = first_knight
-thread.start()
-#threads.append(threads)
+thread1 = first_knight
+thread2 = second_knight
 
+thread1.start()
+thread2.start()
 
-thread.join()
+thread1.join()
+thread2.join()
