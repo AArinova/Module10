@@ -4,14 +4,18 @@ from datetime import datetime
 def read_info(name):
 
     with open(name, "r", encoding='utf-8') as file:
-        while True:
+        line = file.readline()
+        while line:
             line = file.readline()
-            print(line)
+            #print(line)
 
 if __name__ == '__main__':
 
     start = datetime.now()
     read_info('file 1.txt')
+    read_info('file 2.txt')
+    read_info('file 3.txt')
+    read_info('file 4.txt')
     stop = datetime.now()
     print('Время выполнения:', stop - start)
     #
