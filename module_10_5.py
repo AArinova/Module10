@@ -7,18 +7,22 @@ def read_info(name):
         line = file.readline()
         while line:
             line = file.readline()
-            #print(line)
 
 if __name__ == '__main__':
 
+    fnames = ['file 1.txt', 'file 2.txt', 'file 3.txt', 'file 4.txt']
+
     start = datetime.now()
-    read_info('file 1.txt')
-    read_info('file 2.txt')
-    read_info('file 3.txt')
-    read_info('file 4.txt')
+    for fname in fnames:
+        read_info(fname)
     stop = datetime.now()
-    print('Время выполнения:', stop - start)
-    #
-    # print('Время выполнения :', stop - start)
-    # with Pool(5) as p:
-    #     print(p.map(f, [1, 2, 3]))
+    print('Время выполнения при линейном вызове:', stop - start)
+
+    start = datetime.now()
+    with Pool(4) as pool:
+        pool.map(read_info, fnames)
+    stop = datetime.now()
+    print('Время выполнения при мультипроцессорном вызове:', stop - start)
+
+
+
